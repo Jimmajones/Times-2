@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/ui/ui_settings.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/world.gd" type="Script" id=2]
+[ext_resource path="res://assets/textures/exit.png" type="Texture" id=3]
+[ext_resource path="res://scenes/ui/ui_victory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ui/ui_level_select.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/textures/settings.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/settings_focused.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/exit_focused.png" type="Texture" id=8]
+
+[node name="Main" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="BtnSettingsMobile" type="TextureButton" parent="GUI"]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -96.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = 96.0
+focus_neighbour_bottom = NodePath("../BtnQuit")
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+texture_focused = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Victory" parent="GUI" instance=ExtResource( 4 )]
+visible = false
+
+[node name="LevelSelect" parent="GUI" instance=ExtResource( 5 )]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/LevelSelect"]
+margin_top = 592.0
+margin_right = 1216.0
+margin_bottom = 656.0
+
+[node name="BtnSettings" type="TextureButton" parent="GUI/LevelSelect/HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+focus_neighbour_bottom = NodePath("../BtnQuit")
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+texture_focused = ExtResource( 7 )
+
+[node name="BtnQuit" type="TextureButton" parent="GUI/LevelSelect/HBoxContainer"]
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 64.0
+focus_neighbour_top = NodePath("../BtnSettings")
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 8 )
+texture_focused = ExtResource( 8 )
+
+[node name="Settings" parent="GUI" instance=ExtResource( 1 )]
+visible = false
+[connection signal="goal_reached" from="World" to="GUI/Victory" method="_on_World_goal_reached"]
+[connection signal="leaving_level" from="World" to="GUI/Settings" method="_on_World_leaving_level"]
+[connection signal="loading_level" from="World" to="GUI/Settings" method="_on_World_loading_level"]
+[connection signal="pressed" from="GUI/BtnSettingsMobile" to="GUI/Settings" method="_on_BtnSettings_pressed"]
+[connection signal="go_to_menu" from="GUI/Victory" to="GUI/LevelSelect" method="_on_Victory_go_to_menu"]
+[connection signal="go_to_menu" from="GUI/Victory" to="GUI/Settings" method="_on_Victory_go_to_menu"]
+[connection signal="go_to_menu" from="GUI/Victory" to="World" method="_on_Victory_go_to_menu"]
+[connection signal="go_to_next" from="GUI/Victory" to="World" method="_on_Victory_go_to_next"]
+[connection signal="restart" from="GUI/Victory" to="World" method="_on_Victory_restart"]
+[connection signal="victory_close" from="GUI/Victory" to="GUI/Settings" method="_on_Victory_victory_close"]
+[connection signal="victory_open" from="GUI/Victory" to="GUI/Settings" method="_on_Victory_victory_open"]
+[connection signal="level_selected" from="GUI/LevelSelect" to="GUI/Settings" method="_on_LevelSelect_level_selected"]
+[connection signal="level_selected" from="GUI/LevelSelect" to="World" method="_on_LevelSelect_level_selected"]
+[connection signal="pressed" from="GUI/LevelSelect/HBoxContainer/BtnSettings" to="GUI/Settings" method="_on_BtnSettings_pressed"]
+[connection signal="pressed" from="GUI/LevelSelect/HBoxContainer/BtnQuit" to="GUI/LevelSelect" method="_on_BtnQuit_pressed"]
+[connection signal="close_settings" from="GUI/Settings" to="GUI/LevelSelect" method="_on_Settings_close_settings"]
+[connection signal="go_to_menu" from="GUI/Settings" to="GUI/LevelSelect" method="_on_Settings_go_to_menu"]
+[connection signal="go_to_menu" from="GUI/Settings" to="World" method="_on_Settings_go_to_menu"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/ui_level_select.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/logo.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/square.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/music/whatfor.wav" type="AudioStream" id=4]
+
+[node name="LevelSelect" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = -32.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="."]
+margin_right = 1216.0
+margin_bottom = 81.0
+size_flags_vertical = 7
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="LevelGrid" type="NinePatchRect" parent="."]
+margin_top = 85.0
+margin_right = 1216.0
+margin_bottom = 656.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
+texture = ExtResource( 3 )
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="LevelGrid"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = 56.0
+margin_right = -64.0
+margin_bottom = -48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Music"

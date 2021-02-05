@@ -1,0 +1,147 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/lvl_class.gd" type="Script" id=1]
+[ext_resource path="res://scenes/world/tilemap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/interactables/door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/world/background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/interactables/goal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/actors/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/interactables/key.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/world/music.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/interactables/checkpoint.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/actors/enemy.tscn" type="PackedScene" id=10]
+
+[node name="LevelClass" type="Node2D"]
+script = ExtResource( 1 )
+BULLET_LIGHTNESS = 0.5
+FLOOR_DARKNESS = 0.05
+SPEED_PER_CHECKPOINT = 1.0
+color_1 = Color( 1, 1, 1, 1 )
+color_2 = Color( 0, 0.611765, 0.0509804, 1 )
+checkpoint_blend = Color( 1, 0.937255, 0, 1 )
+
+[node name="Background" parent="." instance=ExtResource( 4 )]
+position = Vector2( 192, -192 )
+region_rect = Rect2( 0, 0, 1536, 2048 )
+
+[node name="Background2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1600, -736 )
+region_rect = Rect2( 0, 0, 1280, 960 )
+
+[node name="Floor" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( -524286, 3, 8, -524285, 3, 10, -524284, 3, 10, -524283, 3, 10, -524282, 3, 10, -524281, 3, 10, -524280, 3, 10, -524279, 3, 10, -524278, 3, 11, -524275, 3, 8, -524274, 3, 10, -524273, 3, 10, -524272, 3, 10, -524271, 3, 11, -458750, 3, 65544, -458749, 3, 131081, -458748, 3, 131081, -458747, 3, 131081, -458746, 3, 131081, -458745, 3, 131081, -458744, 3, 131081, -458743, 3, 131081, -458742, 3, 65542, -458741, 3, 10, -458740, 3, 10, -458739, 3, 65541, -458738, 3, 131081, -458737, 3, 131081, -458736, 3, 131081, -458735, 3, 131083, -327681, 3, 8, -393216, 3, 10, -393215, 3, 10, -393214, 3, 65541, -393213, 3, 131081, -393212, 3, 131081, -393211, 3, 131081, -393210, 3, 131081, -393209, 3, 131081, -393208, 3, 131081, -393207, 3, 131081, -393206, 3, 131081, -393205, 3, 131081, -393204, 3, 131081, -393203, 3, 131081, -393202, 3, 131081, -393201, 3, 131081, -393200, 3, 131081, -393199, 3, 131083, -262145, 3, 65544, -327680, 3, 131081, -327679, 3, 131081, -327678, 3, 131081, -327677, 3, 131081, -327676, 3, 131081, -327675, 3, 131081, -327674, 3, 131081, -327673, 3, 131081, -327672, 3, 131081, -327671, 3, 131081, -327670, 3, 131081, -327669, 3, 131078, -327668, 3, 196617, -327667, 3, 196617, -327666, 3, 196617, -327665, 3, 196617, -327664, 3, 196617, -327663, 3, 196619, -196610, 3, 8, -196609, 3, 65541, -262144, 3, 131081, -262143, 3, 131081, -262142, 3, 131081, -262141, 3, 131081, -262140, 3, 131081, -262139, 3, 131081, -262138, 3, 131081, -262137, 3, 131081, -262136, 3, 131081, -262135, 3, 131081, -262134, 3, 131081, -262133, 3, 131083, -131074, 3, 65544, -131073, 3, 131081, -196608, 3, 131081, -196607, 3, 131078, -196606, 3, 196617, -196605, 3, 131077, -196604, 3, 131081, -196603, 3, 131081, -196602, 3, 131081, -196601, 3, 131081, -196600, 3, 131081, -196599, 3, 131081, -196598, 3, 131081, -196597, 3, 131083, -65538, 3, 65544, -65537, 3, 131081, -131072, 3, 131081, -131071, 3, 131083, -131069, 3, 196616, -131068, 3, 196617, -131067, 3, 196617, -131066, 3, 196617, -131065, 3, 196617, -131064, 3, 196617, -131063, 3, 196617, -131062, 3, 196617, -131061, 3, 196619, -2, 3, 65544, -1, 3, 131081, -65536, 3, 131078, -65535, 3, 196619, 65534, 3, 65544, 65535, 3, 131081, 0, 3, 131083, 131070, 3, 65544, 131071, 3, 131081, 65536, 3, 131083, 196606, 3, 65544, 196607, 3, 131081, 131072, 3, 131083, 262142, 3, 196616, 262143, 3, 196617, 196608, 3, 196619 )
+
+[node name="Walls" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( -524286, 2, 0, -524284, 2, 0, -524282, 2, 0, -524280, 2, 0, -524278, 2, 0, -524275, 2, 0, -524273, 2, 0, -524272, 2, 0, -524271, 2, 0, -458750, 2, 0, -458748, 2, 0, -458746, 2, 0, -458744, 2, 0, -458742, 2, 0, -458741, 2, 0, -458740, 2, 0, -458739, 2, 0, -327681, 2, 0, -393216, 2, 0, -393215, 2, 0, -393214, 2, 0, -393202, 10, 0, -262145, 2, 0, -327669, 2, 0, -327668, 2, 0, -327667, 2, 0, -327666, 2, 0, -327665, 2, 0, -327663, 2, 0, -196610, 2, 0, -262143, 2, 0, -262142, 2, 0, -262133, 2, 0, -131074, 2, 0, -196606, 2, 0, -196605, 2, 0, -196603, 2, 0, -196601, 2, 0, -196599, 2, 0, -196597, 2, 0, -131071, 2, 0, -131069, 2, 0, -131067, 2, 0, -131065, 2, 0, -131063, 2, 0, -131061, 2, 0, -2, 2, 0, -65535, 2, 0, 65534, 2, 0, 0, 2, 0, 131070, 2, 0, 65536, 2, 0, 196606, 2, 0, 131072, 2, 0, 262142, 2, 0, 262143, 2, 0, 196608, 2, 0 )
+
+[node name="Enemy" parent="." instance=ExtResource( 10 )]
+position = Vector2( -96, -96 )
+fire_rate = 1.8
+
+[node name="Enemy2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 32, -32 )
+rotation = -1.57079
+offset = 0.45
+fire_rate = 1.8
+
+[node name="Enemy3" parent="." instance=ExtResource( 10 )]
+position = Vector2( 96, -160 )
+rotation = -3.14159
+offset = 0.9
+fire_rate = 1.8
+
+[node name="Enemy4" parent="." instance=ExtResource( 10 )]
+position = Vector2( -32, -224 )
+rotation = -4.71238
+offset = 1.35
+fire_rate = 1.8
+
+[node name="Enemy5" parent="." instance=ExtResource( 10 )]
+position = Vector2( 224, -480 )
+rotation = -4.71238
+bullet_speed = 300.0
+
+[node name="Enemy8" parent="." instance=ExtResource( 10 )]
+position = Vector2( 352, -480 )
+rotation = -4.71238
+offset = 0.2
+bullet_speed = 300.0
+
+[node name="Enemy10" parent="." instance=ExtResource( 10 )]
+position = Vector2( 480, -480 )
+rotation = -4.71238
+offset = 0.4
+bullet_speed = 300.0
+
+[node name="Enemy12" parent="." instance=ExtResource( 10 )]
+position = Vector2( 608, -480 )
+rotation = -4.71238
+offset = 0.6
+bullet_speed = 300.0
+
+[node name="Enemy6" parent="." instance=ExtResource( 10 )]
+position = Vector2( 288, -96 )
+rotation = -7.85397
+offset = 0.1
+bullet_speed = 300.0
+
+[node name="Enemy7" parent="." instance=ExtResource( 10 )]
+position = Vector2( 416, -96 )
+rotation = -7.85397
+offset = 0.3
+bullet_speed = 300.0
+
+[node name="Enemy9" parent="." instance=ExtResource( 10 )]
+position = Vector2( 544, -96 )
+rotation = -7.85397
+offset = 0.5
+bullet_speed = 300.0
+
+[node name="Enemy11" parent="." instance=ExtResource( 10 )]
+position = Vector2( 672, -96 )
+rotation = -7.85397
+offset = 0.7
+bullet_speed = 300.0
+
+[node name="Enemy13" parent="." instance=ExtResource( 10 )]
+position = Vector2( 928, -480 )
+rotation = -4.71238
+fire_rate = 1.6
+
+[node name="Enemy14" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1120, -416 )
+rotation = -3.14159
+fire_rate = 1.8
+
+[node name="Enemy15" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1120, -352 )
+rotation = -3.14159
+fire_rate = 2.0
+
+[node name="Key" parent="." instance=ExtResource( 7 )]
+position = Vector2( -32, 32 )
+
+[node name="Door" parent="." instance=ExtResource( 3 )]
+position = Vector2( -32, -32 )
+
+[node name="Checkpoint" parent="." instance=ExtResource( 9 )]
+position = Vector2( -32, 96 )
+
+[node name="Checkpoint2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 160, -288 )
+
+[node name="Checkpoint3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 800, -352 )
+
+[node name="Goal" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1056, -224 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( -32, 160 )
+
+[node name="Music" parent="." instance=ExtResource( 8 )]
+[connection signal="close_door" from="Key" to="Door" method="_on_Key_close_door"]
+[connection signal="open_door" from="Key" to="Door" method="_on_Key_open_door"]
+[connection signal="checkpoint_reached" from="Player" to="." method="_on_Player_checkpoint_reached"]
+[connection signal="goal_reached" from="Player" to="." method="_on_Player_goal_reached"]
+[connection signal="respawning" from="Player" to="Key" method="_on_Player_respawning"]

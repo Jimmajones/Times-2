@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scripts/lvl_class.gd" type="Script" id=1]
+[ext_resource path="res://scenes/world/tilemap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/interactables/door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/world/background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/interactables/goal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/actors/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/interactables/key.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/world/music.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/interactables/checkpoint.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/actors/enemy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/audio/music/pressure-02.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/audio/music/pressure-01.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/audio/music/pressure-03.wav" type="AudioStream" id=13]
+
+[node name="LvlTiming" type="Node2D"]
+script = ExtResource( 1 )
+BULLET_LIGHTNESS = 0.5
+FLOOR_DARKNESS = 0.1
+SPEED_PER_CHECKPOINT = 1.0
+color_1 = Color( 1, 1, 1, 1 )
+color_2 = Color( 0.619608, 0.737255, 0.94902, 1 )
+checkpoint_blend = Color( 0, 1, 1, 0.172549 )
+
+[node name="Background" parent="." instance=ExtResource( 4 )]
+position = Vector2( 576, 320 )
+region_rect = Rect2( 0, 0, 2560, 2176 )
+
+[node name="Floor" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( -786423, 3, 8, -786422, 3, 10, -786421, 3, 10, -786420, 3, 10, -786419, 3, 11, -720887, 3, 65544, -720886, 3, 131081, -720885, 3, 131081, -720884, 3, 131081, -720883, 3, 131083, -655351, 3, 65544, -655350, 3, 131081, -655349, 3, 131081, -655348, 3, 131081, -655347, 3, 131083, -589815, 3, 65544, -589814, 3, 131081, -589813, 3, 131081, -589812, 3, 131081, -589811, 3, 131083, -524279, 3, 196616, -524278, 3, 131077, -524277, 3, 131081, -524276, 3, 131078, -524275, 3, 196619, -458742, 3, 65544, -458741, 3, 131081, -458740, 3, 131083, -393210, 3, 8, -393209, 3, 10, -393208, 3, 10, -393207, 3, 10, -393206, 3, 65541, -393205, 3, 131081, -393204, 3, 131083, -327674, 3, 65544, -327673, 3, 131081, -327672, 3, 131081, -327671, 3, 131081, -327670, 3, 131081, -327669, 3, 131081, -327668, 3, 131083, -262138, 3, 65544, -262137, 3, 131081, -262136, 3, 131081, -262135, 3, 131078, -262134, 3, 196617, -262133, 3, 196617, -262132, 3, 196619, -196602, 3, 65544, -196601, 3, 131081, -196600, 3, 131081, -196599, 3, 131083, -131066, 3, 65544, -131065, 3, 131081, -131064, 3, 131078, -131063, 3, 196619, -65530, 3, 65544, -65529, 3, 131081, -65528, 3, 131083, 1, 3, 8, 2, 3, 10, 3, 3, 10, 4, 3, 10, 5, 3, 10, 6, 3, 65541, 7, 3, 131081, 8, 3, 131083, 65537, 3, 65544, 65538, 3, 131081, 65539, 3, 131081, 65540, 3, 131081, 65541, 3, 131081, 65542, 3, 131081, 65543, 3, 131081, 65544, 3, 131083, 131073, 3, 196616, 131074, 3, 196617, 131075, 3, 196617, 131076, 3, 131077, 131077, 3, 131081, 131078, 3, 131081, 131079, 3, 131081, 131080, 3, 131083, 196612, 3, 196616, 196613, 3, 196617, 196614, 3, 196617, 196615, 3, 196617, 196616, 3, 196619 )
+
+[node name="Walls" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( -720907, 2, 0, -720906, 2, 0, -720905, 2, 0, -720904, 2, 0, -720903, 2, 0, -720902, 2, 0, -720901, 2, 0, -720900, 2, 0, -720899, 2, 0, -720898, 2, 0, -720897, 2, 0, -786432, 2, 0, -786431, 2, 0, -786430, 2, 0, -786429, 2, 0, -786428, 2, 0, -786427, 2, 0, -786426, 2, 0, -786425, 2, 0, -786424, 2, 0, -786423, 2, 0, -786422, 2, 0, -786420, 2, 0, -786419, 2, 0, -786418, 2, 0, -786417, 2, 0, -786416, 2, 0, -786415, 2, 0, -786414, 2, 0, -786413, 2, 0, -786412, 2, 0, -786411, 2, 0, -786410, 2, 0, -786409, 2, 0, -786408, 2, 0, -786407, 2, 0, -786406, 2, 0, -786405, 2, 0, -786404, 2, 0, -655371, 2, 0, -720887, 2, 0, -720868, 2, 0, -589835, 2, 0, -655347, 2, 0, -655332, 2, 0, -524299, 2, 0, -589815, 2, 0, -589796, 2, 0, -458763, 2, 0, -524279, 2, 0, -524278, 2, 0, -524276, 2, 0, -524275, 2, 0, -524260, 2, 0, -393227, 2, 0, -458742, 2, 0, -458740, 2, 0, -458724, 2, 0, -327691, 2, 0, -393210, 2, 0, -393209, 2, 0, -393208, 2, 0, -393207, 2, 0, -393206, 2, 0, -393204, 2, 0, -393188, 2, 0, -262155, 2, 0, -327668, 2, 0, -327652, 2, 0, -196619, 2, 0, -262138, 2, 0, -262135, 2, 0, -262134, 2, 0, -262133, 2, 0, -262132, 2, 0, -262116, 2, 0, -131083, 2, 0, -196602, 2, 0, -196599, 2, 0, -196580, 2, 0, -65547, 2, 0, -131066, 2, 0, -131063, 2, 0, -131044, 2, 0, -11, 2, 0, -65530, 2, 0, -65528, 2, 0, -65508, 2, 0, 65525, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 2, 0, 8, 2, 0, 28, 2, 0, 131061, 2, 0, 65537, 2, 0, 65542, 2, 0, 65544, 2, 0, 65564, 2, 0, 196597, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 131080, 2, 0, 131100, 2, 0, 262133, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196636, 2, 0, 327669, 2, 0, 262172, 2, 0, 393205, 2, 0, 327708, 2, 0, 458741, 2, 0, 393244, 2, 0, 524277, 2, 0, 458780, 2, 0, 589813, 2, 0, 524316, 2, 0, 655349, 2, 0, 589852, 2, 0, 720885, 2, 0, 655388, 2, 0, 786421, 2, 0, 720924, 2, 0, 851957, 2, 0, 786460, 2, 0, 917493, 2, 0, 851996, 2, 0, 983029, 2, 0, 917532, 2, 0, 1048565, 2, 0, 983068, 2, 0, 1114101, 2, 0, 1048604, 2, 0, 1179637, 2, 0, 1114140, 2, 0, 1245173, 2, 0, 1179676, 2, 0, 1310709, 2, 0, 1245212, 2, 0, 1376245, 2, 0, 1310748, 2, 0, 1441781, 2, 0, 1441782, 2, 0, 1441783, 2, 0, 1441784, 2, 0, 1441785, 2, 0, 1441786, 2, 0, 1441787, 2, 0, 1441788, 2, 0, 1441789, 2, 0, 1441790, 2, 0, 1441791, 2, 0, 1376256, 2, 0, 1376257, 2, 0, 1376258, 2, 0, 1376259, 2, 0, 1376260, 2, 0, 1376261, 2, 0, 1376262, 2, 0, 1376263, 2, 0, 1376264, 2, 0, 1376265, 2, 0, 1376266, 2, 0, 1376267, 2, 0, 1376268, 2, 0, 1376269, 2, 0, 1376270, 2, 0, 1376271, 2, 0, 1376272, 2, 0, 1376273, 2, 0, 1376274, 2, 0, 1376275, 2, 0, 1376276, 2, 0, 1376277, 2, 0, 1376278, 2, 0, 1376279, 2, 0, 1376280, 2, 0, 1376281, 2, 0, 1376282, 2, 0, 1376283, 2, 0, 1376284, 2, 0 )
+
+[node name="Goal" parent="." instance=ExtResource( 5 )]
+position = Vector2( 736, -800 )
+
+[node name="Key" parent="." instance=ExtResource( 7 )]
+modulate = Color( 0.494118, 0.392157, 0.823529, 1 )
+position = Vector2( 800, -672 )
+
+[node name="Door" parent="." instance=ExtResource( 3 )]
+modulate = Color( 0.494118, 0.392157, 0.823529, 1 )
+position = Vector2( 736, -736 )
+
+[node name="Enemy" parent="." instance=ExtResource( 10 )]
+position = Vector2( 288, 160 )
+fire_rate = 1.25
+
+[node name="Enemy2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 544, -96 )
+rotation = -1.57079
+
+[node name="Enemy3" parent="." instance=ExtResource( 10 )]
+position = Vector2( 416, -288 )
+fire_rate = 2.5
+
+[node name="Enemy4" parent="." instance=ExtResource( 10 )]
+position = Vector2( 864, -544 )
+rotation = 3.14159
+
+[node name="Enemy5" parent="." instance=ExtResource( 10 )]
+position = Vector2( 608, -608 )
+offset = 0.5
+
+[node name="Enemy6" parent="." instance=ExtResource( 10 )]
+position = Vector2( 864, -672 )
+rotation = -3.14159
+
+[node name="Checkpoint" parent="." instance=ExtResource( 9 )]
+position = Vector2( 224, 96 )
+
+[node name="Checkpoint2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 480, 32 )
+
+[node name="Checkpoint3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 736, -416 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 160, 96 )
+
+[node name="Music" parent="." instance=ExtResource( 8 )]
+loop_1 = ExtResource( 12 )
+loop_2 = ExtResource( 11 )
+loop_3 = ExtResource( 13 )
+[connection signal="close_door" from="Key" to="Door" method="_on_Key_close_door"]
+[connection signal="open_door" from="Key" to="Door" method="_on_Key_open_door"]
+[connection signal="checkpoint_reached" from="Player" to="." method="_on_Player_checkpoint_reached"]
+[connection signal="goal_reached" from="Player" to="." method="_on_Player_goal_reached"]
+[connection signal="respawning" from="Player" to="Key" method="_on_Player_respawning"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/pistol.gd" type="Script" id=1]
+[ext_resource path="res://scenes/actors/bullet_pistol.tscn" type="PackedScene" id=2]
+
+[node name="Pistol" type="Node2D"]
+script = ExtResource( 1 )
+BULLET_SCENE = ExtResource( 2 )
+
+[node name="Line" type="Line2D" parent="."]
+points = PoolVector2Array( -32, 0, 32, 0 )
+width = 8.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 24, 0 )

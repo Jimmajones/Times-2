@@ -1,0 +1,185 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://resources/font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://resources/font_large.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/textures/square.png" type="Texture" id=3]
+[ext_resource path="res://scripts/ui_settings.gd" type="Script" id=4]
+[ext_resource path="res://assets/textures/menu_focused.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/prev.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/prev_focused.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/menu.png" type="Texture" id=8]
+
+[node name="Settings" type="NinePatchRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -160.0
+margin_right = 160.0
+margin_bottom = 160.0
+texture = ExtResource( 3 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -144.0
+margin_right = 128.0
+margin_bottom = 144.0
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LblTitle" type="Label" parent="VBoxContainer"]
+margin_right = 256.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Settings"
+align = 1
+
+[node name="LblDisplay" type="Label" parent="VBoxContainer"]
+margin_top = 41.0
+margin_right = 256.0
+margin_bottom = 71.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Display"
+align = 1
+
+[node name="CheckFullscreen" type="CheckButton" parent="VBoxContainer"]
+margin_left = 51.0
+margin_top = 76.0
+margin_right = 204.0
+margin_bottom = 116.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Fullscreen"
+
+[node name="CheckBorder" type="CheckButton" parent="VBoxContainer"]
+margin_left = 50.0
+margin_top = 121.0
+margin_right = 205.0
+margin_bottom = 161.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Borderless"
+
+[node name="LblAudio" type="Label" parent="VBoxContainer"]
+margin_top = 166.0
+margin_right = 256.0
+margin_bottom = 196.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Audio"
+align = 1
+
+[node name="HBoxMusic" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 201.0
+margin_right = 256.0
+margin_bottom = 231.0
+custom_constants/separation = 40
+
+[node name="LblMusic" type="Label" parent="VBoxContainer/HBoxMusic"]
+margin_right = 54.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Music"
+align = 1
+
+[node name="HSliderMusic" type="HSlider" parent="VBoxContainer/HBoxMusic"]
+margin_left = 94.0
+margin_top = 7.0
+margin_right = 256.0
+margin_bottom = 23.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 3.0
+max_value = 1.0
+step = 0.1
+
+[node name="HBoxEffects" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 236.0
+margin_right = 256.0
+margin_bottom = 266.0
+custom_constants/separation = 40
+
+[node name="LblEffects" type="Label" parent="VBoxContainer/HBoxEffects"]
+margin_right = 54.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Effects"
+align = 1
+
+[node name="HSliderEffects" type="HSlider" parent="VBoxContainer/HBoxEffects"]
+margin_left = 94.0
+margin_top = 7.0
+margin_right = 256.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 3.0
+max_value = 1.0
+step = 0.1
+
+[node name="BtnExit" type="TextureButton" parent="."]
+margin_left = 16.0
+margin_top = 16.9197
+margin_right = 80.0
+margin_bottom = 80.9197
+focus_neighbour_right = NodePath("../BtnMenu")
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+texture_focused = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnMenu" type="TextureButton" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -80.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 80.0
+focus_neighbour_left = NodePath("../BtnExit")
+texture_normal = ExtResource( 8 )
+texture_hover = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="VBoxContainer/CheckFullscreen" to="." method="_on_CheckFullscreen_toggled"]
+[connection signal="toggled" from="VBoxContainer/CheckBorder" to="." method="_on_CheckBorder_toggled"]
+[connection signal="value_changed" from="VBoxContainer/HBoxMusic/HSliderMusic" to="." method="_on_HSliderMusic_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxEffects/HSliderEffects" to="." method="_on_HSliderEffects_value_changed"]
+[connection signal="pressed" from="BtnExit" to="." method="_on_BtnExit_pressed"]
+[connection signal="pressed" from="BtnMenu" to="." method="_on_BtnMenu_pressed"]
